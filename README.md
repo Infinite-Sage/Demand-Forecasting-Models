@@ -1,4 +1,7 @@
-# Explaining Demand-Forecasting-Models for E-commerce (Home Decor Category)
+# Explainable Demand Forecasting for E-Commerce Using SHAP (Home Decor)
+
+## TL;DR
+
 This project applies Explainable AI (XAI) to uncover the key drivers behind customer purchases in the home_decor category. Using two machine learning models — Random Forest and K-Nearest Neighbors (KNN) — we apply SHAP (Shapley values) to make model predictions transparent and actionable for marketing, inventory, and strategy teams.
 
 ## Project Objectives
@@ -19,7 +22,7 @@ This project applies Explainable AI (XAI) to uncover the key drivers behind cust
 | `y_train.csv` | Labels (home decor sales) – used for model training |
 | `y_test.csv` | Labels for evaluation (not needed for SHAP) |
 | `shap_summary_plot.png` | SHAP summary plot |
-| `explaining_demand_forecasting.ipynb` | Final Jupyter notebook with SHAP insights |
+| `explaining_demand_forecasting.ipynb` | Notebook with SHAP implementation and insights |
 
 ## Methodology
 
@@ -43,16 +46,22 @@ Models Used:
 | 4 | `sma_2m` | 2-month moving average |
 | 5 | `sma_2m__colourful_essentials` | Recent spend in related category (cross-sell signal) |
 
-## Business Insights
+### Business Insights
 
-- **Marketing:** Target customers with recent decor or related category purchases
-- **Inventory Planning:** Prepare for surges based on lag and moving average signals
-- **Strategy:** Bundle offers based on co-purchase behaviors (e.g. decor + accessories)
+- **Marketing**: Target users who recently bought decor or similar items
+- **Inventory**: Stock planning guided by moving averages and lag trends
+- **Strategy**: Cross-sell through category bundles (e.g., Home Decor + Colourful Essentials)
 
 These insights are data-backed and derived from real customer behavior.
 
 ## Visualizations
 The SHAP summary plot clearly shows which features increase or decrease purchase predictions. Red points = higher feature values (e.g., high spending), blue = low values.
+
+### SHAP Summary Plot
+
+This plot shows which features most impact the Random Forest model’s predictions.
+
+![SHAP Summary](shap_summary_plot.png)
 
 ## Tech Stack
 
@@ -61,6 +70,13 @@ The SHAP summary plot clearly shows which features increase or decrease purchase
 - scikit-learn
 - NumPy, Pandas
 - Matplotlib (optional SHAP plot)
+
+### Future Work
+
+- Try time-series specific models (e.g., XGBoost + lag features)
+- Scale SHAP explanations on full dataset
+- Add LIME as an alternate explainer for model comparison
+- Integrate insights into CRM dashboard for real-time decision-making
 
 ## Notes
 - The y_train.csv and y_test.csv files are only needed if retraining the model. SHAP doesn't require y values directly.

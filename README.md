@@ -1,4 +1,8 @@
-# Explainable Demand Forecasting for E-Commerce Using SHAP (Home Decor)
+# Explainable AI for Demand Forecasting in E-Commerce (Home Decor)
+
+🔍 **Executive Summary**  
+This project explains what drives next-month home décor purchases using explainable machine learning.  
+Using SHAP values and two trained models, we identify which customer behaviors most influence buying decisions — helping marketing run smarter campaigns, inventory better plan stock, and strategy create winning bundles.
 
 This project uses **Explainable AI (XAI)** to uncover what drives customers to purchase in the `home_decor` category. By applying **SHAP (Shapley values)** to both a **Random Forest** and **K-Nearest Neighbors (KNN)** model, we identify which features matter most for forecasting next-month demand — making predictions **transparent and actionable** for:
 
@@ -35,13 +39,13 @@ This project uses **Explainable AI (XAI)** to uncover what drives customers to p
 ## Methodology
 
 - **Explainability Technique:** SHAP — a model-agnostic approach based on cooperative game theory
-Models Used:
+- **Models Used:**
   - `RandomForestRegressor` – explained with `TreeExplainer`
   - `KNeighborsRegressor` – explained with `KernelExplainer`
 - **Model Consistency Check**:  
   - Metric: **Cosine Similarity** of feature importance rankings  
   - Threshold: **≥ 0.80 = Reliable**  
-  - ✅ **Result**: `0.89` → Interpretations are highly reliable
+  - ✅ **Result**: `0.89` → The alignment across models indicates **high confidence in interpretability and model stability**.
 
 ---
 
@@ -54,6 +58,27 @@ Models Used:
 | 3 | `lag1` | Home decor purchase 1 month ago |
 | 4 | `sma_2m` | 2-month moving average |
 | 5 | `sma_2m__colourful_essentials` | Recent spend in related category (cross-sell signal) |
+
+---
+
+🧠 **Why Trust the Random Forest More?**
+
+While both models agree on top signals (e.g., `lag1`, `lag2`, `sma_4m`), **Random Forest explanations are more reliable** because:
+
+- TreeExplainer uses model internals for accuracy  
+- KNN explanations rely on approximations via Kernel SHAP, which can be noisy or unstable with small sample sizes
+
+➡️ **Use Random Forest’s SHAP results for making business decisions.**
+
+---
+
+## 📈 Business Summary Table
+
+| Business Area | SHAP Insight | Action |
+|---------------|--------------|--------|
+| Marketing     | Recent decor or accessory purchases | Run retargeting ads; trigger email flows |
+| Inventory     | Lag-based and moving average demand signals | Pre-stock items with consistent purchase patterns |
+| Strategy      | Cross-category interest (e.g., accessories + decor) | Launch bundle promotions; update homepage merchandising |
 
 ---
 
